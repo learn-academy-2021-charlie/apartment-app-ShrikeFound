@@ -3,9 +3,14 @@
 @import "tailwindcss/components";
 
 
-.page-header{
+h1{
   @apply text-center text-3xl
 }
+
+h2{
+  @apply mt-8 text-xl font-bold
+}
+
 
 .nav-link{
   @apply p-2 hover:bg-yellow-300 focus:bg-yellow-300

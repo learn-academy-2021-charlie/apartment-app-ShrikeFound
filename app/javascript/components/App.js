@@ -14,16 +14,14 @@ class App extends Component {
 
 
   getSampleJobs = async () =>{
-    const url = this.props.jobs_route
-    console.log("fetching from: ",url)
+    const url = this.props.sample_jobs_route
     const response = await fetch(url)
     const result = await response.json()
-    console.log(result)
+    this.setState({jobs: result})
   }
 
 
   componentDidMount(){
-    console.log("jobs index path: ",this.props)
     this.getSampleJobs();
   }
 
@@ -39,7 +37,7 @@ class App extends Component {
             sign_out_route={sign_out_route}
           />
           <Switch>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/" render = {(props) => <Home jobs={this.state.jobs}/>}/>
             <Route path="/about" component={About}/>
             <Route path="/jobs" component={JobsIndex}/>
           </Switch>
