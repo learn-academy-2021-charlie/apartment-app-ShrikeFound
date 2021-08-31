@@ -13,7 +13,19 @@ class App extends Component {
   }
 
 
+  getSampleJobs = async () =>{
+    const url = this.props.jobs_route
+    console.log("fetching from: ",url)
+    const response = await fetch(url)
+    const result = await response.json()
+    console.log(result)
+  }
 
+
+  componentDidMount(){
+    console.log("jobs index path: ",this.props)
+    this.getSampleJobs();
+  }
 
   render() {
     const {logged_in,new_user_route,sign_in_route,sign_out_route,current_user} = this.props
