@@ -8,12 +8,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <br/>
-        <Header/>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/about" component={About}/>
-        </Switch>
+        <div className=" w-10/12 max-w-6xl mx-auto font-mono ">
+          <Header/>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+          </Switch>
+        </div>
       </Router>
     )
   }
