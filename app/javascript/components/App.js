@@ -21,13 +21,29 @@ class App extends Component {
     this.setState({jobs: result})
   }
 
+  getSUserJobs = async () =>{
+    const url = this.props.user_jobs_route
+    const response = await fetch(url)
+    const result = await response.json()
+    this.setState({jobs: result})
+    console.log("getting real jobs")
+  }
+
+
+
 
   componentDidMount(){
-    this.getSampleJobs();
+    if(this.props.logged_in){
+      this.getSampleJobs();
+    }else{
+      this.getUserJobs();
+    }
+
   }
 
   render() {
     const {logged_in,new_user_route,sign_in_route,sign_out_route,current_user} = this.props
+    
     return (
       <Router>
         <div className=" w-10/12 max-w-6xl mx-auto font-mono ">
