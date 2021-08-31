@@ -1,3 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
+
+
+.page-header{
+  @apply text-center text-3xl
+}
