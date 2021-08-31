@@ -6,3 +6,7 @@
 .page-header{
   @apply text-center text-3xl
 }
+
+.nav-link{
+  @apply p-2 hover:bg-yellow-300 focus:bg-yellow-300
+}
