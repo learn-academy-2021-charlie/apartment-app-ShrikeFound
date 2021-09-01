@@ -11,8 +11,9 @@ class Home extends Component {
         <h2>Jobs being hunted as we speak:</h2>
         {jobs &&
           jobs.map((j) => {
+            console.log(j)
             return( 
-            <JobCardLink job={j}/>
+            <JobCardLink key={j.id} job={j}/>
             )
           })}
       </div>

@@ -57,6 +57,7 @@ jobs = [
     status_id: 1,
     salary: 6000000,
     is_remote: false,
+    is_private: true,
     notes: "these are where I'd add my own personal notes about the job"
   },
   {
@@ -70,6 +71,7 @@ jobs = [
     status_id: 1,
     salary: 6500000,
     is_remote: true,
+    is_private: true,
     notes: "these are where I'd add my own personal notes about the job"
   },
   {
@@ -83,6 +85,7 @@ jobs = [
     status_id: 1,
     salary: 0,
     is_remote: true,
+    is_private: false,
     notes: "these are where I'd add my own personal notes about the job"
   },
   {
@@ -96,6 +99,7 @@ jobs = [
     status_id: 1,
     salary: 6500000,
     is_remote: true,
+    is_private: false,
     notes: "these are where I'd add my own personal notes about the job"
   }
 ]
