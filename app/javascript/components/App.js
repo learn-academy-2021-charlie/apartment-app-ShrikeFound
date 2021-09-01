@@ -14,36 +14,25 @@ class App extends Component {
   }
 
 
-  getSampleJobs = async () =>{
-    const url = this.props.sample_jobs_route
+  getJobs = async () =>{
+    const loggedIn = this.props.logged_in
+    const url = loggedIn ? this.props.user_jobs_route : this.props.sample_jobs_route
     const response = await fetch(url)
     const result = await response.json()
     this.setState({jobs: result})
-  }
-
-  getSUserJobs = async () =>{
-    const url = this.props.user_jobs_route
-    const response = await fetch(url)
-    const result = await response.json()
-    this.setState({jobs: result})
-    console.log("getting real jobs")
   }
 
 
 
 
   componentDidMount(){
-    if(this.props.logged_in){
-      this.getSampleJobs();
-    }else{
-      this.getUserJobs();
-    }
+    this.getJobs();
 
   }
 
   render() {
     const {logged_in,new_user_route,sign_in_route,sign_out_route,current_user} = this.props
-    
+    console.log(this.state.jobs)
     return (
       <Router>
         <div className=" w-10/12 max-w-6xl mx-auto font-mono ">
@@ -56,7 +45,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render = {(props) => <Home jobs={this.state.jobs}/>}/>
             <Route path="/about" component={About}/>
-            <Route path="/jobindex" component={JobsIndex}/>
+            <Route path="/jobindex" render = {(props) =>{
+              return <JobsIndex jobs={this.state.jobs} />
+            }}/>
             <Route path="/jobshow/:id" render = {(props) =>{
               const id = props.match.params.id 
               const job = this.state.jobs.find(job => job.id === +id)

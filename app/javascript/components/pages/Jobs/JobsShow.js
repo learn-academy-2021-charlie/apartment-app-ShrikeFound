@@ -18,7 +18,7 @@ class JobsShow extends Component {
       <div>
         <h1>Show me a Job</h1>
         <div className="mt-4 p-4 shadow-lg">
-                <h3 className="text-lg font-bold"><a  className="hover:text-yellow-600" href={job.url}>{job.company} | {job.title}</a><span className="text-gray-300">{job.is_remote ? "(remote)":"(not remote)"}</span></h3>
+                <h3 className="text-lg font-bold"><span className="text-yellow-500">{job.status.name}</span> <span  className="hover:text-yellow-600" >{job.company} | {job.title}</span><span className="text-gray-300">{job.is_remote ? "(remote)":"(not remote)"}</span></h3>
                 <p>Salary: {this.formatter.format(job.salary/100)}</p>
                 <p className="mt-2">{job.description}</p>
                 <p className="mt-2">{job.city}, {job.state}</p>

@@ -7,7 +7,7 @@ export class Header extends Component {
     return (
       <header className=" mt-12 mb-20 flex justify-between">
         
-        <Link to="/">RANGER | Job Hunt Tracker</Link>
+        <Link to="/">RANGER | Job Tracker</Link>
         <nav >
           <Link to="/jobindex" className="nav-link">Jobs</Link>
           <Link to="/about" className="ml-4 nav-link">About</Link>
