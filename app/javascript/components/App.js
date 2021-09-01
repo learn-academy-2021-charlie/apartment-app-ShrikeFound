@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
+import ProtectedRoute from './components/ProtectedRoute'
 import About from './pages/About'
 import Home from './pages/Home'
 import JobsIndex from './pages/Jobs/JobsIndex'
@@ -45,9 +46,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render = {(props) => <Home jobs={this.state.jobs}/>}/>
             <Route path="/about" component={About}/>
-            <Route path="/jobindex" render = {(props) =>{
-              return <JobsIndex jobs={this.state.jobs} />
-            }}/>
+            <ProtectedRoute sign_in_route={sign_in_route} logged_in={logged_in}>
+              <Route path="/jobindex" render = {(props) =>{
+                return <JobsIndex jobs={this.state.jobs} />
+              }}/>
+            </ProtectedRoute>
             <Route path="/jobshow/:id" render = {(props) =>{
               const id = props.match.params.id 
               const job = this.state.jobs.find(job => job.id === +id)
