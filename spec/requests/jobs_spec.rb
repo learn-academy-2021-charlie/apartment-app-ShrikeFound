@@ -41,6 +41,9 @@ RSpec.describe 'Jobs', type: :request do
       expect(response).to have_http_status(200)
       expect(job.company).to eq("Terrier Tech")
     end
+  end
+
+
 
     describe 'PATCH /jobs/:id' do
       it 'updates a job' do
@@ -89,5 +92,49 @@ RSpec.describe 'Jobs', type: :request do
         expect(edited_job.title).to eq("CEO")
       end
     end
-  end
+
+    describe 'DELETE /jobs/:id' do 
+      it "deletes a job" do 
+
+        user_attrs = {
+          email: 'job.seeker@email.com',
+          password: 'learn_jobs_123',
+          password_confirmation: 'learn_jobs_123',
+        }
+
+        status = Status.create(name: 'lead', priority: 1)
+        user = User.create(user_attrs)
+        sign_in user
+
+        job_params = {
+          job: {
+            company: 'Terrier Tech',
+            title: 'Software Engineer',
+            city: 'San Diego',
+            state: 'California',
+            url: 'www.google.com',
+            description:
+              "this is where the job description would go. for now it's just this.",
+            confidence_level: 5,
+            status_id: status.id,
+            salary: 6_000_000,
+            is_remote: false,
+            is_private: true,
+            notes:
+              "these are where I'd add my own personal notes about the job",
+          },
+        }
+
+        job = user.jobs.create(job_params[:job])
+
+
+        delete "/jobs/#{job.id}"
+        
+        expect(response).to have_http_status(200)
+
+      end
+    end
+
+
+
 end
