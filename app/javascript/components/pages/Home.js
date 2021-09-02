@@ -1,6 +1,5 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import JobCardLink from "../components/JobCardShallow"
+import JobCardLink from "../components/JobCardLink"
 
 class Home extends Component {
   render() {
@@ -11,7 +10,6 @@ class Home extends Component {
         <h2>Jobs being hunted as we speak:</h2>
         {jobs &&
           jobs.map((j) => {
-            console.log(j)
             return( 
             <JobCardLink key={j.id} job={j}/>
             )

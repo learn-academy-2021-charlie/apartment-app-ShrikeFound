@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import { Redirect } from "react-router-dom"
 import JobCard from "../../components/JobCard"
 
 class JobsShow extends Component {
 
   render() {
+    console.log("rendering show page")
     const { job } = this.props
       return (
         <div>
