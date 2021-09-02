@@ -4,7 +4,6 @@ import JobCard from "../../components/JobCard"
 class JobsShow extends Component {
 
   render() {
-    console.log("rendering show page")
     const { job } = this.props
       return (
         <div>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 class JobsIndex extends Component {
   render() {
-    console.log("rendering index page")
     const { jobs } = this.props
     return (
       <div>
