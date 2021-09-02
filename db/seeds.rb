@@ -41,6 +41,7 @@ if !new_user
 else
 
   puts "Test user already exists. skipping user creation..."
+  
 end
 
 ## creating jobs
