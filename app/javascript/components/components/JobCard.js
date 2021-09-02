@@ -9,7 +9,6 @@ class JobCard extends Component {
 
 
   render() {
-    console.log(this.formatter)
     const {job} = this.props
     return (
       <div className="mt-4 p-4 shadow-lg">

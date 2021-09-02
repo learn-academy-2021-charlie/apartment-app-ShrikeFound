@@ -33,7 +33,6 @@ class App extends Component {
 
   render() {
     const {logged_in,new_user_route,sign_in_route,sign_out_route,current_user} = this.props
-    console.log(this.state.jobs)
     return (
       <Router>
         <div className=" w-10/12 max-w-6xl mx-auto font-mono ">
@@ -46,12 +45,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render = {(props) => <Home jobs={this.state.jobs}/>}/>
             <Route path="/about" component={About}/>
-            <ProtectedRoute sign_in_route={sign_in_route} logged_in={logged_in}>
-              <Route path="/jobindex" render = {(props) =>{
+            <ProtectedRoute path="/jobsindex"sign_in_route={sign_in_route} logged_in={logged_in}>
+              <Route render = {(props) =>{
                 return <JobsIndex jobs={this.state.jobs} />
               }}/>
             </ProtectedRoute>
-            <Route path="/jobshow/:id" render = {(props) =>{
+            <Route path="/jobsshow/:id" render = {(props) =>{
               const id = props.match.params.id 
               const job = this.state.jobs.find(job => job.id === +id)
               return <JobsShow job={job}/>
