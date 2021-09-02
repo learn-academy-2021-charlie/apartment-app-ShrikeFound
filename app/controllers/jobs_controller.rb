@@ -39,6 +39,14 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    job = Job.find(params[:id])
+
+    if job.destroy 
+      head 204
+    else
+      head 404
+    end
+
   end
 
 

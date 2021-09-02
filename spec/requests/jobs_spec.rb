@@ -130,7 +130,7 @@ RSpec.describe 'Jobs', type: :request do
 
         delete "/jobs/#{job.id}"
         
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(204)
 
       end
     end
