@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user! , except: [:sample_jobs]
+  
   def index 
     jobs = current_user.jobs 
     render json: jobs, include: ['status']
@@ -13,5 +14,33 @@ class JobsController < ApplicationController
     render json: jobs, include: ['status']
   
   end
+
+
+  def create 
+    job = current_user.jobs.new(job_params)
+    status = Status.find(params[:job][:status_id])
+    job.status = status
+    
+    if job.save 
+      render json: job, include: ['status']
+    else
+      render animal.errors.full_messages
+    end
+
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+
+  private
+  
+  def job_params 
+    params.require(:job).permit(:title,:city,:state,:url,:description,:confidence_level,:salary,:is_remote,:notes,:is_private)
+  end
+
 
 end
