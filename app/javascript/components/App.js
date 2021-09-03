@@ -32,7 +32,12 @@ class App extends Component {
   }
 
   updateJob = (jobData) => {
-    console.log("updated job:")
+    console.log("updating job:")
+    console.log(jobData)
+  }
+
+  deleteJob = (jobData) => {
+    console.log("deleting job:")
     console.log(jobData)
   }
 
@@ -112,7 +117,7 @@ class App extends Component {
               render={(props) => {
                 const id = props.match.params.id
                 const job = this.state.jobs.find((job) => job.id === +id)
-                return <JobsShow job={job} />
+                return <JobsShow job={job} deleteJob={this.deleteJob} logged_in={logged_in}/>
               }}
             />
           </Switch>

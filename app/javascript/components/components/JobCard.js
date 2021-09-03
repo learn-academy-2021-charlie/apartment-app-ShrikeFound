@@ -8,7 +8,7 @@ class JobCard extends Component {
   })
 
   render() {
-    const { job } = this.props
+    const { job, deleteJob, logged_in } = this.props
     return (
       <div className="mt-4 p-4 shadow-lg">
         <h3 className="text-lg font-bold">
@@ -28,9 +28,15 @@ class JobCard extends Component {
         <Link to={`/jobsedit/${job.id}`} className="button yellow">
           Edit
         </Link>
-        <Link to={`/jobsdelete/${job.id}`} className="button red">
-          Delete
-        </Link>
+        {logged_in && (
+          <Link
+            to="/jobsindex"
+            className="button red"
+            onClick={() => deleteJob(job.id)}
+          >
+            Delete
+          </Link>
+        )}
       </div>
     )
   }
