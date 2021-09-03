@@ -10,7 +10,7 @@ class JobsController < ApplicationController
 
   def sample_jobs
   
-    jobs = Job.where(is_private: false).limit(2)
+    jobs = Job.where("is_private <> 'true'").limit(2)
     render json: jobs, include: ['status']
   
   end

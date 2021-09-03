@@ -26,9 +26,23 @@ class App extends Component {
     this.setState({ jobs: result })
   }
 
-  createJob = (jobData) => {
+  createJob = async (jobData) => {
     console.log("creating job:")
-    console.log(jobData)
+    const url = "/jobs"
+    try {
+      const response = await fetch(url, {
+        body: JSON.stringify(jobData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      })
+
+      await response.json()
+      this.getJobs()
+    } catch (error) {
+      console.log("create errors: ", error)
+    }
   }
 
   updateJob = (jobData) => {
@@ -117,7 +131,13 @@ class App extends Component {
               render={(props) => {
                 const id = props.match.params.id
                 const job = this.state.jobs.find((job) => job.id === +id)
-                return <JobsShow job={job} deleteJob={this.deleteJob} logged_in={logged_in}/>
+                return (
+                  <JobsShow
+                    job={job}
+                    deleteJob={this.deleteJob}
+                    logged_in={logged_in}
+                  />
+                )
               }}
             />
           </Switch>
