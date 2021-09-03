@@ -102,7 +102,7 @@ class App extends Component {
                     " jobs: ",
                     this.state.jobs
                   )
-                  return <JobsEdit job={job} />
+                  return <JobsEdit job={job} updateJob={this.updateJob} />
                 }}
               />
             )}

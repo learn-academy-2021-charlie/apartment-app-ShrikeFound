@@ -20,7 +20,20 @@ h2{
   box-shadow: .25rem .25rem black;
   display: block;
   max-width: max-content;
-  @apply bg-yellow-300 hover:bg-yellow-400 font-semibold py-2 px-4 text-black border border-black mt-2 ml-auto
+
+  &.yellow{
+    @apply bg-yellow-300 hover:bg-yellow-400
+  }
+
+  &.red{
+    @apply bg-red-400 hover:bg-red-500
+  }
+
+  &.white{
+    @apply hover:bg-gray-200
+  }
+
+  @apply font-semibold py-2 px-4 text-black border border-black mt-2 ml-auto
 }
 
 .text-input{

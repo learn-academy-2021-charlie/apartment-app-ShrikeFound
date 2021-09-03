@@ -11,7 +11,7 @@ export class JobsEdit extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // this.props.updateJob(this.state.form)
+    this.props.updateJob(this.state.form)
   }
 
   handleChange = (e) => {

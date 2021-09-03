@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 
 class JobForm extends Component {
   render() {
@@ -92,7 +93,7 @@ class JobForm extends Component {
               id="salary"
               className="text-input"
               onChange={handleChange}
-              value={formData.salary}
+              value={parseInt(formData.salary)}
             />
           </label>
 
@@ -121,7 +122,10 @@ class JobForm extends Component {
             />
           </label>
         </div>
-        <button className="button">{submitText}</button>
+        <button className="button yellow">{submitText}</button>
+        <Link to="/jobsindex" className="button white">
+          Back
+        </Link>
       </form>
     )
   }

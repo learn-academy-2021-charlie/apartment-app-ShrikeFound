@@ -25,8 +25,11 @@ class JobCard extends Component {
         <p className="mt-2 text-gray-400">
           {job.city}, {job.state}
         </p>
-        <Link to={`/jobsedit/${job.id}`} className="button">
-          Edit Job Listing
+        <Link to={`/jobsedit/${job.id}`} className="button yellow">
+          Edit
+        </Link>
+        <Link to={`/jobsdelete/${job.id}`} className="button red">
+          Delete
         </Link>
       </div>
     )

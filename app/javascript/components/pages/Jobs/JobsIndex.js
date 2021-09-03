@@ -12,7 +12,7 @@ class JobsIndex extends Component {
           jobs.map((j) => {
             return <JobCardLink key={j.id} job={j} />
           })}
-        <Link className="button" to="/jobsnew">
+        <Link className="button yellow" to="/jobsnew">
           New Job listing
         </Link>
       </div>
