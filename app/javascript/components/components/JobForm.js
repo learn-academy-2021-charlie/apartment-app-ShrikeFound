@@ -96,13 +96,13 @@ class JobForm extends Component {
             />
           </label>
 
-          <label className="label" htmlFor="isRemote">
+          <label className="label flex items-center" htmlFor="isRemote">
             <span>Remote?</span>
             <input
               type="checkbox"
               name="isRemote"
               id="isRemote"
-              className="form-checkbox text-green-500"
+              className="form-checkbox text-yellow-500 ml-2"
               onChange={handleChange}
               value={formData.isRemote}
             />
