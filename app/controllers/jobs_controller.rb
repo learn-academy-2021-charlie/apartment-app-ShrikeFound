@@ -18,7 +18,7 @@ class JobsController < ApplicationController
 
   def create 
     job = current_user.jobs.new(job_params)
-    status = Status.find(params[:job][:status_id])
+    status = Status.find_by(name: "lead")
     job.status = status
     
     if job.save 
