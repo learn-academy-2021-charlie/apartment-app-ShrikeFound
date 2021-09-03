@@ -25,8 +25,8 @@ class App extends Component {
     this.setState({ jobs: result })
   }
 
-  createJob = () => {
-    console.log("creating job!")
+  createJob = (jobData) => {
+    console.log(jobData)
   }
 
   componentDidMount() {
