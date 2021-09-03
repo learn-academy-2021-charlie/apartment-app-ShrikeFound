@@ -39,6 +39,7 @@ class JobsNew extends Component {
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           formData={form}
+          submitText={"Create"}
         />
       </div>
     )

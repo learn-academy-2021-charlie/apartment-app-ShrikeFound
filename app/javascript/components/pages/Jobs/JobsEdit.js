@@ -5,27 +5,13 @@ export class JobsEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: {
-        company: "",
-        title: "",
-        city: "",
-        state: "",
-        description: "",
-        confidenceLevel: "",
-        salary: "",
-        isRemote: "",
-        notes: "",
-      },
+      form: this.props.job,
     }
-  }
-
-  componentDidMount = () => {
-    console.log(this.props.match.params)
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createJob(this.state.form)
+    // this.props.updateJob(this.state.form)
   }
 
   handleChange = (e) => {
@@ -36,14 +22,16 @@ export class JobsEdit extends Component {
 
   render() {
     const { form } = this.state
+    console.log("form info: ",form)
     return (
       <>
         <h1>Edit this Job Listing</h1>
-        <JobForm
+        {form && <JobForm
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           formData={form}
-        />
+          submitText = {"Update"}
+        />}
       </>
     )
   }

@@ -7,6 +7,7 @@ const ProtectedRoute = ({
   component: Component,
   ...rest
 }) => {
+
   return (
     <Route
       {...rest}

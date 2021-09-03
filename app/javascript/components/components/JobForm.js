@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 class JobForm extends Component {
   render() {
-    const { formData, handleSubmit, handleChange } = this.props
+    const { formData, handleSubmit, handleChange, submitText } = this.props
 
     return (
       <form
@@ -71,15 +71,15 @@ class JobForm extends Component {
             />
           </label>
 
-          <label className="label" htmlFor="confidenceLevel">
+          <label className="label" htmlFor="confidence_level">
             <span>Confidence Level (1-10)</span>
             <input
-              type="text"
-              name="confidenceLevel"
-              id="confidenceLevel"
+              type="number"
+              name="confidence_level"
+              id="confidence_level"
               className="text-input"
               onChange={handleChange}
-              value={formData.confidenceLevel}
+              value={parseInt(formData.confidence_level)}
             />
           </label>
 
@@ -96,12 +96,12 @@ class JobForm extends Component {
             />
           </label>
 
-          <label className="label flex items-center" htmlFor="isRemote">
+          <label className="label flex items-center" htmlFor="is_remote">
             <span>Remote?</span>
             <input
               type="checkbox"
-              name="isRemote"
-              id="isRemote"
+              name="is_remote"
+              id="is_remote"
               className="form-checkbox text-yellow-500 ml-2"
               onChange={handleChange}
               value={formData.isRemote}
@@ -121,7 +121,7 @@ class JobForm extends Component {
             />
           </label>
         </div>
-        <button className="button">Create Job Listing</button>
+        <button className="button">{submitText}</button>
       </form>
     )
   }

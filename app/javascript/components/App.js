@@ -27,6 +27,12 @@ class App extends Component {
   }
 
   createJob = (jobData) => {
+    console.log("creating job:")
+    console.log(jobData)
+  }
+
+  updateJob = (jobData) => {
+    console.log("updated job:")
     console.log(jobData)
   }
 
@@ -74,12 +80,32 @@ class App extends Component {
               component={JobsNew}
             />
 
-            <ProtectedRoute
+            {/* <ProtectedRoute
               path="/jobsedit/:id"
               sign_in_route={sign_in_route}
               logged_in={logged_in}
+              jobs={this.state.jobs}
               component={JobsEdit}
-            />
+            /> */}
+            {logged_in && (
+              <Route
+                path="/jobsedit/:id"
+                render={(props) => {
+                  const id = props.match.params.id
+                  const job = this.state.jobs.find((job) => job.id === +id)
+                  console.log("routing information")
+                  console.log(
+                    "id: ",
+                    id,
+                    " job: ",
+                    job,
+                    " jobs: ",
+                    this.state.jobs
+                  )
+                  return <JobsEdit job={job} />
+                }}
+              />
+            )}
 
             <Route
               path="/jobsshow/:id"
