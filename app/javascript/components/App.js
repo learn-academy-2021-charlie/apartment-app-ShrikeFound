@@ -18,9 +18,7 @@ class App extends Component {
 
   getJobs = async () => {
     const loggedIn = this.props.logged_in
-    const url = loggedIn
-      ? this.props.user_jobs_route
-      : this.props.sample_jobs_route
+    const url = loggedIn ? "/jobs" : "/sample_jobs"
     const response = await fetch(url)
     const result = await response.json()
     this.setState({ jobs: result })
