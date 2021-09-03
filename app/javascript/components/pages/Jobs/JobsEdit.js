@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router"
 import JobForm from "../../components/JobForm"
 
 export class JobsEdit extends Component {
@@ -6,12 +7,14 @@ export class JobsEdit extends Component {
     super(props)
     this.state = {
       form: this.props.job,
+      formSubmitted: false,
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.updateJob(this.state.form)
+    this.setState({ formSubmitted: true })
   }
 
   handleChange = (e) => {
@@ -22,16 +25,19 @@ export class JobsEdit extends Component {
 
   render() {
     const { form } = this.state
-    console.log("form info: ",form)
+    const { job } = this.props
     return (
       <>
         <h1>Edit this Job Listing</h1>
-        {form && <JobForm
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          formData={form}
-          submitText = {"Update"}
-        />}
+        {form && (
+          <JobForm
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            formData={form}
+            submitText={"Update"}
+          />
+        )}
+        {this.state.formSubmitted && <Redirect to={`/jobsshow/${job.id}`} />}
       </>
     )
   }

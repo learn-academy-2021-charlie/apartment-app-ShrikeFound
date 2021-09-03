@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   createJob = async (jobData) => {
-    console.log("creating job:")
     const url = "/jobs"
     try {
       const response = await fetch(url, {
@@ -45,9 +44,22 @@ class App extends Component {
     }
   }
 
-  updateJob = (jobData) => {
-    console.log("updating job:")
-    console.log(jobData)
+  updateJob = async (jobData) => {
+    const url = `/jobs/${jobData.id}`
+    try {
+      const response = await fetch(url, {
+        body: JSON.stringify(jobData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PATCH",
+      })
+
+      await response.json()
+      this.getJobs()
+    } catch (error) {
+      console.log("create errors: ", error)
+    }
   }
 
   deleteJob = (jobData) => {
