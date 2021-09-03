@@ -1,27 +1,17 @@
 import React, { Component } from "react"
 import JobForm from "../../components/JobForm"
 
-class JobsNew extends Component {
+export class JobsEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      form: {
-        company: "",
-        title: "",
-        city: "",
-        state: "",
-        description: "",
-        confidenceLevel: "",
-        salary: "",
-        isRemote: "",
-        notes: "",
-      },
+      form: this.props.job,
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createJob(this.state.form)
+    this.props.updateJob(this.state.form)
   }
 
   handleChange = (e) => {
@@ -32,18 +22,19 @@ class JobsNew extends Component {
 
   render() {
     const { form } = this.state
+    console.log("form info: ",form)
     return (
-      <div>
-        <h1>Create a Job Listing</h1>
-        <JobForm
+      <>
+        <h1>Edit this Job Listing</h1>
+        {form && <JobForm
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           formData={form}
-          submitText={"Create"}
-        />
-      </div>
+          submitText = {"Update"}
+        />}
+      </>
     )
   }
 }
 
-export default JobsNew
+export default JobsEdit
