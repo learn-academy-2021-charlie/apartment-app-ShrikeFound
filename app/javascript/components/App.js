@@ -4,7 +4,8 @@ import Header from './components/Header'
 import ProtectedRoute from './components/ProtectedRoute'
 import About from './pages/About'
 import Home from './pages/Home'
-import JobsIndex from './pages/Jobs/JobsIndex'
+import JobsEdit from "./pages/Jobs/JobsEdit"
+import JobsIndex from "./pages/Jobs/JobsIndex"
 import JobsNew from "./pages/Jobs/JobsNew"
 import JobsShow from "./pages/Jobs/JobsShow"
 class App extends Component {
@@ -71,6 +72,13 @@ class App extends Component {
               logged_in={logged_in}
               createJob={this.createJob}
               component={JobsNew}
+            />
+
+            <ProtectedRoute
+              path="/jobsedit/:id"
+              sign_in_route={sign_in_route}
+              logged_in={logged_in}
+              component={JobsEdit}
             />
 
             <Route

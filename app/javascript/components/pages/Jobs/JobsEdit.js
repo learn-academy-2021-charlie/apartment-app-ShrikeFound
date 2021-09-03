@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import JobForm from "../../components/JobForm"
 
-class JobsNew extends Component {
+export class JobsEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,6 +19,10 @@ class JobsNew extends Component {
     }
   }
 
+  componentDidMount = () => {
+    console.log(this.props.match.params)
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createJob(this.state.form)
@@ -33,16 +37,16 @@ class JobsNew extends Component {
   render() {
     const { form } = this.state
     return (
-      <div>
-        <h1>Create a Job Listing</h1>
+      <>
+        <h1>Edit this Job Listing</h1>
         <JobForm
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           formData={form}
         />
-      </div>
+      </>
     )
   }
 }
 
-export default JobsNew
+export default JobsEdit
