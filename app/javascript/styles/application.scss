@@ -15,3 +15,10 @@ h2{
 .nav-link{
   @apply p-2 hover:bg-yellow-300 focus:bg-yellow-300
 }
+
+.button{
+  box-shadow: .25rem .25rem black;
+  display: block;
+  max-width: max-content;
+  @apply bg-yellow-300 hover:bg-yellow-400 font-semibold py-2 px-4 text-black border border-black mt-2
+}
