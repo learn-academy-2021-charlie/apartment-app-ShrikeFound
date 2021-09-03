@@ -62,9 +62,19 @@ class App extends Component {
     }
   }
 
-  deleteJob = (jobData) => {
-    console.log("deleting job:")
-    console.log(jobData)
+  deleteJob = async (id) => {
+    const url = `/jobs/${id}`
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+      })
+      this.getJobs()
+    } catch (error) {
+      console.log("create errors: ", error)
+    }
   }
 
   componentDidMount() {

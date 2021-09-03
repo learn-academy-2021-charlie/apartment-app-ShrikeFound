@@ -42,8 +42,10 @@ class JobsController < ApplicationController
     job = Job.find(params[:id])
 
     if job.destroy 
+      puts "job destroyed"
       head 204
     else
+      puts job.errors.full_messages
       head 404
     end
 
