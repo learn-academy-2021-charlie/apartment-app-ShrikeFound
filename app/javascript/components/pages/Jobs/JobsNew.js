@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Redirect } from "react-router"
 import JobForm from "../../components/JobForm"
 
 class JobsNew extends Component {
@@ -11,17 +12,20 @@ class JobsNew extends Component {
         city: "",
         state: "",
         description: "",
-        confidenceLevel: "",
+        confidence_level: "",
         salary: "",
-        isRemote: "",
+        is_remote: "",
+        is_private: true,
         notes: "",
       },
+      formSubmitted: false,
     }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createJob(this.state.form)
+    this.setState({ formSubmitted: true })
   }
 
   handleChange = (e) => {
@@ -41,6 +45,7 @@ class JobsNew extends Component {
           formData={form}
           submitText={"Create"}
         />
+        {this.state.formSubmitted && <Redirect to="/jobsindex" />}
       </div>
     )
   }

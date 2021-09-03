@@ -80,7 +80,7 @@ class JobForm extends Component {
               id="confidence_level"
               className="text-input"
               onChange={handleChange}
-              value={parseInt(formData.confidence_level)}
+              value={formData.confidence_level}
             />
           </label>
 
@@ -93,7 +93,7 @@ class JobForm extends Component {
               id="salary"
               className="text-input"
               onChange={handleChange}
-              value={parseInt(formData.salary)}
+              value={formData.salary}
             />
           </label>
 

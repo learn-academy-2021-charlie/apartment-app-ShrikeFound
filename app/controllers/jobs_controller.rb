@@ -10,7 +10,7 @@ class JobsController < ApplicationController
 
   def sample_jobs
   
-    jobs = Job.where(is_private: false).limit(2)
+    jobs = Job.where("is_private <> 'true'").limit(2)
     render json: jobs, include: ['status']
   
   end
@@ -42,8 +42,10 @@ class JobsController < ApplicationController
     job = Job.find(params[:id])
 
     if job.destroy 
+      puts "job destroyed"
       head 204
     else
+      puts job.errors.full_messages
       head 404
     end
 
