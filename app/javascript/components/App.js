@@ -25,6 +25,10 @@ class App extends Component {
     this.setState({ jobs: result })
   }
 
+  createJob = () => {
+    console.log("creating job!")
+  }
+
   componentDidMount() {
     this.getJobs()
   }
@@ -57,24 +61,18 @@ class App extends Component {
               path="/jobsindex"
               sign_in_route={sign_in_route}
               logged_in={logged_in}
-            >
-              <Route
-                render={(props) => {
-                  return <JobsIndex jobs={this.state.jobs} />
-                }}
-              />
-            </ProtectedRoute>
+              jobs={this.state.jobs}
+              component={JobsIndex}
+            />
+
             <ProtectedRoute
               path="/jobsnew"
               sign_in_route={sign_in_route}
               logged_in={logged_in}
-            >
-              <Route
-                render={(props) => {
-                  return <JobsNew />
-                }}
-              />
-            </ProtectedRoute>
+              createJob={this.createJob}
+              component={JobsNew}
+            />
+
             <Route
               path="/jobsshow/:id"
               render={(props) => {
