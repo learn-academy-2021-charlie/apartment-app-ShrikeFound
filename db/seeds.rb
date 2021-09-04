@@ -16,9 +16,22 @@ statuses = [
 Job.destroy_all
 Status.destroy_all
 
+puts "======================"
+puts "===Creating Statuses=="
+puts "======================"
+
 statuses.each do |status_attrs|
-  Status.create(status_attrs)
-end
+  new_status = Status.new(status_attrs)
+  
+  if new_status.save 
+    puts "status '#{status_attrs[:name]}' created"
+  else
+    puts new_status.errors.full_messages
+    puts
+
+  end
+
+  end
 
 ##creating test user
 
@@ -30,7 +43,9 @@ user_attrs = {
 
 
 new_user = User.find_by(email:"job.seeker@email.com")
-
+puts "======================"
+puts "=====Creating User===="
+puts "======================"
 #only try to create new user if test user doesn't already exists
 if !new_user 
 
@@ -106,6 +121,10 @@ jobs = [
     notes: "these are where I'd add my own personal notes about the job"
   }
 ]
+
+puts "======================"
+puts "==== Creating Jobs ==="
+puts "======================"
 
 #MAKE 'EM
 jobs.each_with_index do |j,index|

@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 2021_09_01_191457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "job_statuses", force: :cascade do |t|
-    t.integer "job_id"
-    t.integer "status_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.string "company"
     t.string "title"
