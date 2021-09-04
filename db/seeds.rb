@@ -76,7 +76,7 @@ jobs = [
     url: "www.google.com",
     description: "this is where the job description would go. for now it's just this.",
     confidence_level: 5,
-    salary: 6000000,
+    salary: 60000,
     is_remote: false,
     is_private: true,
     notes: "these are where I'd add my own personal notes about the job"
@@ -89,7 +89,7 @@ jobs = [
     url: "www.google.com",
     description: "this is where the job description would go. for now it's just this.",
     confidence_level: 2,
-    salary: 6500000,
+    salary: 65000,
     is_remote: true,
     is_private: true,
     notes: "these are where I'd add my own personal notes about the job"
@@ -115,7 +115,7 @@ jobs = [
     url: "www.google.com",
     description: "this is where the job description would go. for now it's just this.",
     confidence_level: 2,
-    salary: 6500000,
+    salary: 40000,
     is_remote: true,
     is_private: false,
     notes: "these are where I'd add my own personal notes about the job"
@@ -130,8 +130,11 @@ puts "======================"
 jobs.each_with_index do |j,index|
   puts "creating new job: #{j[:title]} at #{j[:company]}"
   new_job = new_user.jobs.new(j)
-  
   if new_job.save 
+  if index % 2 === 0 
+    new_job.status = Status.find_by(name: "applied")
+    new_job.save
+  end
     puts "job created."
   else
     puts "error: #{new_job.errors.full_messages}"

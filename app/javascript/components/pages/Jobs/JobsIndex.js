@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import JobCard from "../../components/JobCard"
 import JobCardLink from "../../components/JobCardLink"
 
 class JobsIndex extends Component {
@@ -8,10 +9,13 @@ class JobsIndex extends Component {
     return (
       <div>
         <h1 className="page-header">Job Board</h1>
-        {jobs &&
-          jobs.map((j) => {
-            return <JobCardLink key={j.id} job={j} />
-          })}
+
+        <div className="board grid grid-cols-5">
+          {jobs &&
+            jobs.map((j) => {
+              return <JobCard key={j.id} job={j} />
+            })}
+        </div>
         <Link className="button yellow" to="/jobsnew">
           New Job listing
         </Link>

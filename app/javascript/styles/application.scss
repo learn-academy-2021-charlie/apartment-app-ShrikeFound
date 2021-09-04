@@ -49,3 +49,19 @@ h2{
 .label{
   @apply block text-gray-700 text-sm font-bold mb-2
 }
+
+.priority-1{
+  @apply text-yellow-400
+}
+.priority-2{
+  @apply text-yellow-600
+}
+.priority-3{
+  @apply text-green-600
+}
+.priority-4{
+  @apply text-purple-400
+}
+.priority-5{
+  @apply text-gray-400
+}

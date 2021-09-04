@@ -14,6 +14,7 @@ class App extends Component {
     super(props)
     this.state = {
       jobs: [],
+      statuses: []
     }
   }
 
@@ -23,6 +24,14 @@ class App extends Component {
     const response = await fetch(url)
     const result = await response.json()
     this.setState({ jobs: result })
+  }
+
+  getStatuses = async () => {
+    const loggedIn = this.props.logged_in
+    const url = "/statuses"
+    const response = await fetch(url)
+    const result = await response.json()
+    this.setState({ statuses: result })
   }
 
   createJob = async (jobData) => {
@@ -78,9 +87,11 @@ class App extends Component {
 
   componentDidMount() {
     this.getJobs()
+    this.getStatuses()
   }
 
   render() {
+    console.log(this.state.statuses)
     const {
       logged_in,
       new_user_route,
