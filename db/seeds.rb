@@ -12,6 +12,10 @@ statuses = [
   {name: "rejected",priority: 5},
 ]
 
+#DESTROY ALL JOBS AND STATUSES
+Job.destroy_all
+Status.destroy_all
+
 statuses.each do |status_attrs|
   Status.create(status_attrs)
 end
@@ -38,7 +42,9 @@ if !new_user
     puts "failed to created user: #{new_user.errors.full_messages}"
   end
 
+
 else
+
 
   puts "Test user already exists. skipping user creation..."
   
@@ -101,8 +107,7 @@ jobs = [
   }
 ]
 
-#DESTROY ALL JOBS
-Job.destroy_all
+#MAKE 'EM
 jobs.each_with_index do |j,index|
   puts "creating new job: #{j[:title]} at #{j[:company]}"
   new_job = new_user.jobs.new(j)

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './components/Header'
-import ProtectedRoute from './components/ProtectedRoute'
-import About from './pages/About'
-import Home from './pages/Home'
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import ProtectedRoute from "./components/ProtectedRoute"
+import About from "./pages/About"
+import Home from "./pages/Home"
 import JobsEdit from "./pages/Jobs/JobsEdit"
 import JobsIndex from "./pages/Jobs/JobsIndex"
 import JobsNew from "./pages/Jobs/JobsNew"
@@ -89,78 +90,81 @@ class App extends Component {
     } = this.props
     return (
       <Router>
-        <div className=" w-10/12 max-w-6xl mx-auto font-mono ">
+        <div className=" relative w-10/12 max-w-6xl mx-auto font-mono">
           <Header
             logged_in={logged_in}
             new_user_route={new_user_route}
             sign_in_route={sign_in_route}
             sign_out_route={sign_out_route}
           />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(props) => <Home jobs={this.state.jobs} />}
-            />
-            <Route path="/about" component={About} />
-            <ProtectedRoute
-              path="/jobsindex"
-              sign_in_route={sign_in_route}
-              logged_in={logged_in}
-              jobs={this.state.jobs}
-              component={JobsIndex}
-            />
+          <div className="pt-48 pb-10 min-h-screen">
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => <Home jobs={this.state.jobs} />}
+              />
+              <Route path="/about" component={About} />
+              <ProtectedRoute
+                path="/jobsindex"
+                sign_in_route={sign_in_route}
+                logged_in={logged_in}
+                jobs={this.state.jobs}
+                component={JobsIndex}
+              />
 
-            <ProtectedRoute
-              path="/jobsnew"
-              sign_in_route={sign_in_route}
-              logged_in={logged_in}
-              createJob={this.createJob}
-              component={JobsNew}
-            />
+              <ProtectedRoute
+                path="/jobsnew"
+                sign_in_route={sign_in_route}
+                logged_in={logged_in}
+                createJob={this.createJob}
+                component={JobsNew}
+              />
 
-            {/* <ProtectedRoute
+              {/* <ProtectedRoute
               path="/jobsedit/:id"
               sign_in_route={sign_in_route}
               logged_in={logged_in}
               jobs={this.state.jobs}
               component={JobsEdit}
             /> */}
-            {logged_in && (
+              {logged_in && (
+                <Route
+                  path="/jobsedit/:id"
+                  render={(props) => {
+                    const id = props.match.params.id
+                    const job = this.state.jobs.find((job) => job.id === +id)
+                    console.log("routing information")
+                    console.log(
+                      "id: ",
+                      id,
+                      " job: ",
+                      job,
+                      " jobs: ",
+                      this.state.jobs
+                    )
+                    return <JobsEdit job={job} updateJob={this.updateJob} />
+                  }}
+                />
+              )}
+
               <Route
-                path="/jobsedit/:id"
+                path="/jobsshow/:id"
                 render={(props) => {
                   const id = props.match.params.id
                   const job = this.state.jobs.find((job) => job.id === +id)
-                  console.log("routing information")
-                  console.log(
-                    "id: ",
-                    id,
-                    " job: ",
-                    job,
-                    " jobs: ",
-                    this.state.jobs
+                  return (
+                    <JobsShow
+                      job={job}
+                      deleteJob={this.deleteJob}
+                      logged_in={logged_in}
+                    />
                   )
-                  return <JobsEdit job={job} updateJob={this.updateJob} />
                 }}
               />
-            )}
-
-            <Route
-              path="/jobsshow/:id"
-              render={(props) => {
-                const id = props.match.params.id
-                const job = this.state.jobs.find((job) => job.id === +id)
-                return (
-                  <JobsShow
-                    job={job}
-                    deleteJob={this.deleteJob}
-                    logged_in={logged_in}
-                  />
-                )
-              }}
-            />
-          </Switch>
+            </Switch>
+          </div>
+          <Footer />
         </div>
       </Router>
     )
