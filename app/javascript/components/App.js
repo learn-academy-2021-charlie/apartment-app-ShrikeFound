@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { Component } from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import ProtectedRoute from "./components/ProtectedRoute"
@@ -14,7 +14,8 @@ class App extends Component {
     super(props)
     this.state = {
       jobs: [],
-      statuses: []
+      statuses: [],
+      buckets: {},
     }
   }
 
@@ -23,7 +24,8 @@ class App extends Component {
     const url = loggedIn ? "/jobs" : "/sample_jobs"
     const response = await fetch(url)
     const result = await response.json()
-    this.setState({ jobs: result })
+    const buckets = this.makeBuckets(result)
+    this.setState({ jobs: result, buckets: buckets })
   }
 
   getStatuses = async () => {
@@ -32,6 +34,20 @@ class App extends Component {
     const response = await fetch(url)
     const result = await response.json()
     this.setState({ statuses: result })
+  }
+
+  makeBuckets = (jobs) => {
+    const newBuckets = {}
+    for (let i = 0; i < jobs.length; i++) {
+      const job = jobs[i]
+
+      if (newBuckets[job.status.name]) {
+        newBuckets[job.status.name].push(job)
+      } else {
+        newBuckets[job.status.name] = [job]
+      }
+    }
+    return newBuckets
   }
 
   createJob = async (jobData) => {
@@ -91,7 +107,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.statuses)
     const {
       logged_in,
       new_user_route,
@@ -99,6 +114,9 @@ class App extends Component {
       sign_out_route,
       current_user,
     } = this.props
+
+    const { jobs, statuses, buckets } = this.state
+    console.log("app statuses: ", statuses)
     return (
       <Router>
         <div className=" relative w-10/12 max-w-6xl mx-auto font-mono">
@@ -110,17 +128,15 @@ class App extends Component {
           />
           <div className="pt-48 pb-10 min-h-screen">
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={(props) => <Home jobs={this.state.jobs} />}
-              />
+              <Route exact path="/" render={(props) => <Home jobs={jobs} />} />
               <Route path="/about" component={About} />
               <ProtectedRoute
                 path="/jobsindex"
                 sign_in_route={sign_in_route}
                 logged_in={logged_in}
-                jobs={this.state.jobs}
+                jobs={jobs}
+                buckets={buckets}
+                statuses={statuses}
                 component={JobsIndex}
               />
 

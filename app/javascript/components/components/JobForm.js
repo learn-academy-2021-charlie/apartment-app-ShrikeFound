@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 
 class JobForm extends Component {
   render() {
-    const { formData, handleSubmit, handleChange, submitText } = this.props
+    const { formData, handleSubmit, handleChange, submitText, isEditing } =
+      this.props
 
     return (
       <form
@@ -34,6 +35,7 @@ class JobForm extends Component {
               value={formData.title}
             />
           </label>
+          {isEditing && <h1>WE'RE EDITING THIS!</h1>}
 
           <label className="label" htmlFor="city">
             <span>City</span>

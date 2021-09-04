@@ -34,6 +34,7 @@ export class JobsEdit extends Component {
             handleSubmit={this.handleSubmit}
             handleChange={this.handleChange}
             formData={form}
+            isEditing
             submitText={"Update"}
           />
         )}

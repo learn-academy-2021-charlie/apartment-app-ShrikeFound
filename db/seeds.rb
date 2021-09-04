@@ -5,11 +5,11 @@
 # offers are jobs we've received offers on.
 # rejecteds are jobs we've been rejected form.
 statuses = [
-  {name: "lead",priority: 1},
-  {name: "applied",priority: 2},
-  {name: "interviewed",priority: 3},
-  {name: "offered",priority: 4},
-  {name: "rejected",priority: 5},
+  {name: "lead",priority: 4},
+  {name: "applied",priority: 3},
+  {name: "interviewed",priority: 2},
+  {name: "offered",priority: 1},
+  {name: "rejected",priority: 0},
 ]
 
 #DESTROY ALL JOBS AND STATUSES
