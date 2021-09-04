@@ -2,6 +2,9 @@
 @import "tailwindcss/utilities";
 @import "tailwindcss/components";
 
+::selection{
+  @apply text-white bg-black
+}
 
 h1{
   @apply text-center text-3xl
@@ -12,8 +15,11 @@ h2{
 }
 
 
-.nav-link{
+.nav-link,.style-nav-links > a{
   @apply p-2 hover:bg-yellow-300 focus:bg-yellow-300
+}
+.style-nav-links a{
+  display:block;
 }
 
 .button{
@@ -33,7 +39,7 @@ h2{
     @apply hover:bg-gray-200
   }
 
-  @apply font-semibold py-2 px-4 text-black border border-black mt-2 ml-auto
+  @apply font-semibold py-2 px-4 text-black border border-black mt-2 ml-auto cursor-pointer
 }
 
 .text-input{
